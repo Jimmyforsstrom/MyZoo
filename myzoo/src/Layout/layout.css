@@ -1,0 +1,56 @@
+.layout {
+    width:  100%;
+}
+
+.layout header {
+    min-height:  80px;
+    display: flex;
+    justify-content: end;
+    background-color: cadetblue;
+    padding-top: 4px;
+    padding-bottom: 4px;
+    align-items: center;}
+
+    .layout header nav h1 {
+       
+    color: aquamarine;
+    }
+.layout header ul {
+    
+    list-style: none;
+    margin: 0;
+    display: flex;
+    gap: 20px;
+    margin-right: 1rem;
+}
+
+.layout section {
+    display: flex;
+    background-color: bisque;
+    text-align: center;
+    justify-content: center;
+}
+
+.layout aside {
+    width: 20%;
+    min-height: 50vh;
+    text-align: center;
+    justify-content: center;
+    background-color: aqua;
+    padding-top: 10px;
+}
+.layout main {
+    width: 80%;
+    background-color: dimgrey;
+    padding-top: 10px;
+    color: antiquewhite;
+    text-align: center;
+
+}
+
+.layout footer {
+    height: fit-content;
+    min-height: 50px;
+    background-color: crimson;
+    text-align: center;
+}

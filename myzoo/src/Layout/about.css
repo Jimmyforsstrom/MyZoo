@@ -1,0 +1,17 @@
+
+.about {
+    flex: wrap;
+    display: flex;
+    flex-direction: column;
+   
+}
+.about-container {
+    /* width: 30%; */
+    border: .25rem solid black;
+
+}
+
+.img-container{
+    width: 30%;
+   
+}
