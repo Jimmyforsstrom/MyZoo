@@ -3,54 +3,60 @@
 }
 
 .layout header {
-    min-height:  80px;
+    min-height:  75px;
     display: flex;
     justify-content: end;
     background-color: cadetblue;
     padding-top: 4px;
     padding-bottom: 4px;
-    align-items: center;}
-
-    .layout header nav h1 {
-       
-    color: aquamarine;
-    }
+    align-items: center;
+  
+    }    
 .layout header ul {
     
     list-style: none;
-    margin: 0;
     display: flex;
-    gap: 20px;
+    gap: 1rem;
     margin-right: 1rem;
 }
 
 .layout section {
     display: flex;
-    background-color: bisque;
+    flex-direction: row;
+    background-color: rgb(232, 212, 187);
     text-align: center;
-    justify-content: center;
+    padding-right: 1rem;
+    padding-left: 1rem;
+    padding-top: 10px;
+
 }
 
 .layout aside {
-    width: 20%;
+    width: 15%;
     min-height: 50vh;
     text-align: center;
     justify-content: center;
-    background-color: aqua;
+    background-color: rgb(232, 212, 187);
     padding-top: 10px;
+    
 }
 .layout main {
-    width: 80%;
+    border-top: 0.5 solid black;
+    width: 70%;
     background-color: dimgrey;
-    padding-top: 10px;
-    color: antiquewhite;
+    color: bisque;
     text-align: center;
-
+    padding-top: 1rem;
+    margin-bottom: 1rem;
+    
+    
 }
 
 .layout footer {
     height: fit-content;
     min-height: 50px;
-    background-color: crimson;
+    background-color: bisque;
     text-align: center;
+    border-top: .25rem solid black;
+    padding-top: 1rem;
 }

@@ -1,4 +1,9 @@
 export interface IAnimal {
-    id: number;
+    id: string;
     name: string;
+    longDescription: string;
+    imageURL: string;
+    isFed : boolean
+    lastFed : string;
+
 }

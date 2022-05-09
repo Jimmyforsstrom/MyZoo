@@ -5,13 +5,12 @@ export const Layout = () => {
 
     return(
         <> <div className='layout'>
-        <header>
-            <nav>
-                <ul>
-                    <li><Link to='/' >hem</Link></li>
-                    <li><Link to ='/About'>about</Link></li>
-                    <li><Link to ='/Test'>test</Link></li>
-                    <li><Link to ='/Test'>test2</Link></li>
+        <header> 
+            <nav>   
+              <ul> 
+                  <li><Link to='/' >hem</Link></li>
+                    <li><Link to ='/Animals'>animals</Link></li>
+            
                 </ul>
             </nav>
         </header>

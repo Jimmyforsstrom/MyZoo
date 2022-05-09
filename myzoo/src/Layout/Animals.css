@@ -1,0 +1,17 @@
+.animaldiv {
+    display: flex;
+    border: 0.15rem solid wheat;
+    margin-right: 3rem;
+    margin-left: 3rem;
+    margin-bottom: 1rem;
+}
+
+.animal-img {
+    display: flex;
+    flex-direction: column;
+    max-width: 30%;
+    max-height:30%;
+    padding-bottom: 1rem;
+    margin-left: 2rem;
+    margin-right: 2rem;
+}

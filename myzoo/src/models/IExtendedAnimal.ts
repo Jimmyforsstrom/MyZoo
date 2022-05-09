@@ -6,4 +6,6 @@ export interface IExtendedAnimal {
     latinName : string;
     shortDescription: string;
     imageUrl : string;
+    isFed : boolean;
+    lastFed: string;
 }

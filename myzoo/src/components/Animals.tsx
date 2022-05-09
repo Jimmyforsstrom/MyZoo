@@ -1,28 +1,40 @@
-import axios from "axios"
-import { useEffect, useState } from "react"
+import axios from "axios";
+import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import { IAnimal } from "../models/IAnimal";
-import { IAnimalResponse } from "../models/IAnimalResponse";
+import './../Layout/Animals.css';
 
-
-export function Animals () {
-    const [animal, setAnimals] = useState<IAnimal[]>([]);
-    
-    useEffect(() => {
-        
-        axios.get<IAnimalResponse>('https://animals.azurewebsites.net/api/animals/')
-        .then((response) => {
-            setAnimals(response.data.Search);  
-        });
-    }); 
-
-return<></>
+export function AnimalsList (animals : IAnimal[]){
+    localStorage.setItem('myanimals', JSON.stringify(animals));
 }
 
-    // let animalHTML = animal.map((animal => {
-    //     return (
-    //     <div key={animal.id}>
-    //         <p>{animal.name}</p>
-    //     </div>    );
-    // }))
+   export const Animals = () => { const [animals, setAnimals] = useState<IAnimal[]>([])    
+   
+   useEffect (() => {
+    if(animals.length !==0) return;
 
-    // return <>{<div>{animalHTML}</div>}</> }
+    axios
+    .get<IAnimal[]>('https://animals.azurewebsites.net/api/animals/')
+    .then((response) => {setAnimals(response.data);
+    });
+
+})   
+
+// function handleRestore() {
+//     AnimalsList (animals);   
+
+return (<> 
+         {/*
+          restoreKnapp för eventuella reset tryckningar
+         <button onClick={handleRestore}>restore list</button> */}
+
+    {animals.map((animals) => {
+    return ( <>
+            <div key={animals.id}></div>
+        <Link to={'/animal/' + animals.id}>
+        <p>{animals.id} {animals.name}</p>
+       </Link> </> )
+       
+})}
+</>) 
+}
