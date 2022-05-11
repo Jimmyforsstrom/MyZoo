@@ -1,64 +1,52 @@
-import {useState } from "react"
+import { isDisabled } from "@testing-library/user-event/dist/utils";
+import {useEffect, useState } from "react"
 import {useParams } from "react-router-dom";
 import { IExtendedAnimal } from "../models/IExtendedAnimal";
 
 export const Animal = () => {
+
     const [extendedAnimal, setExAnimal] = useState <IExtendedAnimal>();
-    const [buttonDisabled, setButtonDisabled] = useState (false);
-    let params = useParams(); 
-    
-            // useEffect(() => {
-        //         const animalsFromLS = JSON.parse(localStorage.getItem('myanimals') || '[]');
-        //         animalsFromLS.map((animal : IExtendedAnimal) => 
-        //     { if(params.id === animal.id.toString())
-        //         { setExAnimal(animal); 
-        //     }
-        // {
-        // return <>{extendedAnimal?.name}</>
-        // }   
-    function handleClick() {
-    let animalsFromLS = JSON.parse(localStorage.getItem('myanimals') || '[]');
-    
-    let current = new Date();
-    let cDate = current.getFullYear() + '-' + (current.getMonth() + 1) + '-' + current.getDate();
-    let cTime = current.getHours() + ":" + current.getMinutes() + ":" + current.getSeconds();
-    let dateTime = cDate + ' ' + cTime;
-    console.log(dateTime);
-    
-    animalsFromLS.map((animal : IExtendedAnimal) => 
-    {
-        if(params.id === animal.id.toString())
-        {  
-            setExAnimal(animal); 
-            // uppdaterar om djuret är matat
-            animal.isFed = true; 
-            animal.lastFed = dateTime;
-            localStorage.setItem('myanimals', JSON.stringify(animalsFromLS));
-            console.log(animal.name +' har nu blivit matat, tackar');
-            console.log('är matat ' + animal.isFed);
-            
-        }
+    const [buttonDisable, setButtonDisable] = useState (false);
+    const params = useParams();
 
-        setButtonDisabled(true);
-        setTimeout(() => {
-           setButtonDisabled(false)},2000); 
-        });
-    }
- 
- 
-    return ( <div>
-        <button onClick={handleClick} id='buttonStyle'>feed me</button>
-        <p>last fed time: {extendedAnimal?.lastFed}</p>
-        <p>latin name: {extendedAnimal?.latinName}</p>
-         <p>short description: {extendedAnimal?.shortDescription}</p>
-         <img src={extendedAnimal?.imageUrl} alt="image"/>
-        </div> 
-        );
-    }
+
     
-                
-                
-    
+    useEffect(() => {
+        let animalsFromLS = JSON.parse(localStorage.getItem('myanimals') || '[]');
+        animalsFromLS.forEach((animals : IExtendedAnimal) => {
+            if(params.id == animals.id){
+                setExAnimal(animals);}              
+            });
+        },[]);
         
- 
+        function timeLeft () {
+            setButtonDisable(true);
+            setTimeout(() => {
+                setButtonDisable(false)},36000);
+            }
+            
+            function handleClick() {
+//            timeLeft();
+            
+            let animalsFromLS = JSON.parse(localStorage.getItem('myanimals') || '[]');
+            animalsFromLS.forEach((animals : IExtendedAnimal) => {
+                if(params.id == animals.id){
+                    setExAnimal(animals);
+                    animals.isFed = true;
+                    let dateTime = new Date();
+                    animals.lastFed = dateTime.toTimeString();                    
+                       
+                    localStorage.setItem('myanimals', JSON.stringify(animalsFromLS));
+                
+                }});
+        }  
+    return <>
+    <h2>{extendedAnimal?.name}</h2>
+    {/* <img src={extendedAnimal?.imageUrl} alt='pix'/> */}
+        <div>{extendedAnimal?.shortDescription}</div>
+    <h4>matad senast = {extendedAnimal?.lastFed}</h4>
+    <button onClick={handleClick} disabled ={buttonDisable}>Mata mig</button>
+    </> ;
 
+    }
+    
