@@ -1,4 +1,3 @@
-
 import { useEffect, useState } from "react"
 import {useParams } from "react-router-dom";
 import { IExtendedAnimal } from "../models/IExtendedAnimal";
@@ -6,7 +5,6 @@ import { IExtendedAnimal } from "../models/IExtendedAnimal";
 export const Animal = () => {
 
     const [extendedAnimal, setExAnimal] = useState <IExtendedAnimal>();
-    const [buttonDisable, setButtonDisable] = useState (false);
     const params = useParams();
     
     useEffect(() => {
@@ -16,43 +14,41 @@ export const Animal = () => {
                 setExAnimal(animals);}              
             });
         },[]);
-        //Timer med alert efter att man tryck på (mata mig) knappen
-        function timeLeft () {
-            setButtonDisable(true);
-            setTimeout(() => {
-                
-                alert('tack, nästa tid för mat är om 3timmar tack');
-                setButtonDisable(false)},3000);
-            }
-            
-            
-            function handleClick() {
-                const date = new Date().toLocaleString();
-                
-                let animalsFromLS = JSON.parse(localStorage.getItem('myanimals') || '[]');
-                animalsFromLS.map((animals : IExtendedAnimal) => {
-                    if(params.id == animals.id){
 
-                        setExAnimal(animals);
-                         
-                    animals.isFed = true;    
-                    animals.lastFed = date;                                  
-
-                    // if (Date.parse(Date()) - Date.parse(animals.lastFed) > 4000 * 60 * 60) {
+       
+    function handleClick() {
+        const date = new Date().toLocaleString();
+        
+        let animalsFromLS = JSON.parse(localStorage.getItem('myanimals') || '[]');
+        animalsFromLS.map((animals : IExtendedAnimal) => {
+            if(params.id == animals.id){
+                
+                setExAnimal(animals);
+                
+                animals.isFed = true;    
+                animals.lastFed = date; 
+                
+                // Date.parse(Date()) - Date.parse(animals.lastFed) > 4000 * 60 * 60;
+                
+                localStorage.setItem('myanimals', JSON.stringify(animalsFromLS));
+                
+                //Har satt timer på 10 sek bara för att testa
+                setTimeout(() => {
+                    console.log(animals.name + ' behöver mer käk');
+                    animals.isFed = false;
                     localStorage.setItem('myanimals', JSON.stringify(animalsFromLS));
-                    // }
-                    timeLeft();
-                       
+                    alert(animals.name + ' är mer hungrig');
+                    },10000);
+                
                 }}) }
             
-        return (<>
+        return (<> <div key={extendedAnimal?.id}>
     <h2>{extendedAnimal?.name}</h2>
     {<img src={extendedAnimal?.imageUrl} alt='pix'/>}
         <div>{extendedAnimal?.longDescription}</div>
     <h4>matad senast = {extendedAnimal?.lastFed}</h4>
-    <button onClick={() =>handleClick()} disabled ={buttonDisable}>Mata mig</button>
-
+    <button disabled ={extendedAnimal?.isFed} onClick={()=>handleClick()}>Mata mig</button>
+    </div>
     </> );
-    
     }
 

@@ -33,7 +33,6 @@
     padding-left: 1rem;
     padding-top: 10px;
 
-
 }
 
 .layout aside {
@@ -52,21 +51,19 @@
     color: bisque;
     text-align: center;
     padding: 1rem;
+    margin-bottom: 1rem;
     
 }
-.layout main img {
+.layout main img  {
     border-radius: 8px;
-    max-width: 300px;
-    max-height: 300px;
+    max-width: 400px;
+    max-height: 400px;
     padding-bottom: 1rem;
     border: 1 solid cadetblue;
 }
 
-.layout footer {
-    height: fit-content;
-    min-height: 50px;
-    background-color: bisque;
-    text-align: center;
-    border-top: .25rem solid black;
-    padding-top: 1rem;
+.moreInfo {
+    justify-content: center;
+    display: flex;
+    flex-direction: row;
 }
