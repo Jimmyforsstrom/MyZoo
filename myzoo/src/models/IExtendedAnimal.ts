@@ -4,7 +4,7 @@ export interface IExtendedAnimal {
     id: string;
     name: string;
     latinName : string;
-    shortDescription: string;
+    longDescription: string;
     imageUrl : string;
     isFed : boolean;
     lastFed: string;

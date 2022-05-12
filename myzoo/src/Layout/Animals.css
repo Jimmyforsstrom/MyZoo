@@ -6,6 +6,19 @@
     margin-bottom: 1rem;
 }
 
+.animalcard {
+    border-radius: 5px;
+    color: cadetblue;
+    text-decoration:underline;
+}
+
+h6 {
+margin-top: 0rem;
+margin-bottom: 2rem;
+}
+
+
+
 .animal-img {
     display: flex;
     flex-direction: column;

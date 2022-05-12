@@ -6,6 +6,7 @@ export const Layout = () => {
     return(
         <> <div className='layout'>
         <header> 
+                  <h1>Central Park Zoo</h1>
             <nav>   
               <ul> 
                   <li><Link to='/' >hem</Link></li>
@@ -15,11 +16,13 @@ export const Layout = () => {
             </nav>
         </header>
         <section>
-        Api search for animals
+        <aside></aside>
         <main><Outlet/> </main>
-        <aside>aside</aside>
+        <aside></aside>
         </section>
-        <footer>footer</footer>
+        <footer>
+        
+        </footer>
         </div>
         </>
     )

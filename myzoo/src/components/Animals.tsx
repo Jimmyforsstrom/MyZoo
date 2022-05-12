@@ -11,29 +11,38 @@ export function AnimalsList (animals : IAnimal[]){
    export const Animals = () => { const [animals, setAnimals] = useState<IAnimal[]>([])    
    
    useEffect (() => {
-    if(animals.length !==0) return;
+
+     if (localStorage.getItem('myanimals')){
+     setAnimals(JSON.parse(localStorage.getItem('myanimals') || '[]'))} 
+      else {
 
     axios
     .get<IAnimal[]>('https://animals.azurewebsites.net/api/animals/')
-    .then((response) => {setAnimals(response.data);
-    });
+    .then((response) => {setAnimals(response.data); }
+    );
 
-})   
+}}, [])   
+
 
 // function handleRestore() {
 //     AnimalsList (animals);   
-
+// }
 return (<> 
-         {/*
-          restoreKnapp för eventuella reset tryckningar
-         <button onClick={handleRestore}>restore list</button> */}
+         {/* {
+          //restoreKnapp för eventuella reset tryckningar
+         <button onClick={handleRestore}>restore list</button> 
+         } */}
 
     {animals.map((animals) => {
     return ( <>
             <div key={animals.id}></div>
         <Link to={'/animal/' + animals.id}>
-        <p>{animals.id} {animals.name}</p>
-       </Link> </> )
+        <div className="animalcard"><p>{animals.id}. ({animals.latinName}). Namn = {animals.name}</p>
+        </div></Link>
+        <h6>senast matad = {animals.lastFed} 
+
+        </h6>
+        </> )
        
 })}
 </>) 

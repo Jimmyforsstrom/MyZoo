@@ -19,6 +19,10 @@
     gap: 1rem;
     margin-right: 1rem;
 }
+.layout header h1 {
+    justify-items: center;
+    color: antiquewhite;
+}
 
 .layout section {
     display: flex;
@@ -28,6 +32,7 @@
     padding-right: 1rem;
     padding-left: 1rem;
     padding-top: 10px;
+
 
 }
 
@@ -46,10 +51,15 @@
     background-color: dimgrey;
     color: bisque;
     text-align: center;
-    padding-top: 1rem;
-    margin-bottom: 1rem;
+    padding: 1rem;
     
-    
+}
+.layout main img {
+    border-radius: 8px;
+    max-width: 300px;
+    max-height: 300px;
+    padding-bottom: 1rem;
+    border: 1 solid cadetblue;
 }
 
 .layout footer {
