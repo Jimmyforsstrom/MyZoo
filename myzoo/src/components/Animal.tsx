@@ -1,7 +1,10 @@
 import { useEffect, useState } from "react"
 import {useParams } from "react-router-dom";
 import { IExtendedAnimal } from "../models/IExtendedAnimal";
- 
+import { StyledButton } from "./StyledButton";
+import { StyledHeader1, StyledImg, StyledLayoutDiv } from "./Layout";
+
+
 export const Animal = () => {
 
     const [extendedAnimal, setExAnimal] = useState <IExtendedAnimal>();
@@ -11,7 +14,7 @@ export const Animal = () => {
         let animalsFromLS : IExtendedAnimal[] = JSON.parse(localStorage.getItem('myanimals') || '[]');
         animalsFromLS.map((animals : IExtendedAnimal) => {
             if(params.id == animals.id){
-                setExAnimal(animals);}              
+               setExAnimal(animals);}        
             });
         },[]);
 
@@ -27,9 +30,7 @@ export const Animal = () => {
                 
                 animals.isFed = true;    
                 animals.lastFed = date; 
-                
-                // Date.parse(Date()) - Date.parse(animals.lastFed) > 4000 * 60 * 60;
-                
+                                
                 localStorage.setItem('myanimals', JSON.stringify(animalsFromLS));
                 
                 //Har satt timer på 10 sek bara för att testa
@@ -43,11 +44,11 @@ export const Animal = () => {
                 }}) }
             
         return (<> <div key={extendedAnimal?.id}>
-    <h2>{extendedAnimal?.name}</h2>
-    {<img src={extendedAnimal?.imageUrl} alt='pix'/>}
-        <div>{extendedAnimal?.longDescription}</div>
+    <StyledHeader1 color='bisque'>{extendedAnimal?.name}!</StyledHeader1>
+    {<StyledImg src={extendedAnimal?.imageUrl} alt='pix'/>}
+        <StyledLayoutDiv>{extendedAnimal?.longDescription}</StyledLayoutDiv>
     <h4>matad senast = {extendedAnimal?.lastFed}</h4>
-    <button disabled ={extendedAnimal?.isFed} onClick={()=>handleClick()}>Mata mig</button>
+    <StyledButton color='cadetblue'  disabled ={extendedAnimal?.isFed} onClick={()=>handleClick()}>Mata mig</StyledButton>
     </div>
     </> );
     }

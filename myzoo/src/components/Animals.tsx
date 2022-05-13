@@ -2,7 +2,6 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { IAnimal } from "../models/IAnimal";
-import './../Layout/Animals.css';
 
 export function AnimalsList (animals : IAnimal[]){
     localStorage.setItem('myanimals', JSON.stringify(animals));
@@ -23,8 +22,7 @@ export function AnimalsList (animals : IAnimal[]){
     );
 }}, [])   
 
-return (<> 
-        
+return (<>    
     {animals.map((animals) => {
     return ( <>
             <div key={animals.id}></div>
